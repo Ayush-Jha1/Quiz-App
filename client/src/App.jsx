@@ -1,6 +1,6 @@
 /**
  * Main App Component
- * 
+ *
  * This is the root component that renders the QuizApp.
  * We've simplified it to remove any unused imports and dependencies.
  */

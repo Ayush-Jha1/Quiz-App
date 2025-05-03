@@ -1,6 +1,6 @@
 /**
  * Application Entry Point
- * 
+ *
  * This file initializes the React application by rendering
  * the main App component into the root DOM element.
  */
