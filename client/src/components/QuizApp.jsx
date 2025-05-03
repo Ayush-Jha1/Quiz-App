@@ -1,27 +1,27 @@
 /**
  * Main Quiz Application Component
- * 
+ *
  * This is the parent component that manages the entire quiz flow:
  * - Tracks current question, user score, and quiz completion status
  * - Handles user answer selection and verification
  * - Records time taken to complete the quiz
  * - Shows either questions or final results based on quiz status
  */
-import React, { useState, useEffect } from 'react';
-import QuizQuestion from './QuizQuestion';
-import QuizResults from './QuizResults';
-import { quizQuestions } from '../data/quizQuestions';
+import React, { useState, useEffect } from "react";
+import QuizQuestion from "./QuizQuestion";
+import QuizResults from "./QuizResults";
+import { quizQuestions } from "../data/quizQuestions";
 
 const QuizApp = () => {
   // Core quiz state
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
-  
+
   // Question interaction state
   const [selectedOption, setSelectedOption] = useState(null);
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
-  
+
   // Quiz tracking data
   const [userAnswers, setUserAnswers] = useState([]);
   const [quizStartTime, setQuizStartTime] = useState(null);
@@ -49,33 +49,36 @@ const QuizApp = () => {
     if (!answerSubmitted) {
       const currentQuestion = quizQuestions[currentQuestionIndex];
       const isCorrect = selectedOption === currentQuestion.correctAnswer;
-      
+
       // Increase score if answer is correct
       if (isCorrect) {
         setScore(score + 1);
       }
-      
+
       // Save answer details for results page
-      setUserAnswers([...userAnswers, {
-        questionId: currentQuestion.id,
-        userAnswer: selectedOption,
-        correctAnswer: currentQuestion.correctAnswer,
-        isCorrect: isCorrect
-      }]);
-      
+      setUserAnswers([
+        ...userAnswers,
+        {
+          questionId: currentQuestion.id,
+          userAnswer: selectedOption,
+          correctAnswer: currentQuestion.correctAnswer,
+          isCorrect: isCorrect,
+        },
+      ]);
+
       // Mark this answer as submitted to show feedback
       setAnswerSubmitted(true);
-    } 
+    }
     // If answer was already submitted, move to next question
     else {
       const nextIndex = currentQuestionIndex + 1;
-      
+
       // If there are more questions, go to the next one
       if (nextIndex < quizQuestions.length) {
         setCurrentQuestionIndex(nextIndex);
         setSelectedOption(null);
         setAnswerSubmitted(false);
-      } 
+      }
       // If no more questions, complete the quiz
       else {
         setQuizEndTime(new Date());
@@ -99,27 +102,27 @@ const QuizApp = () => {
   // Calculate time taken to complete the quiz
   const getTimeTaken = () => {
     if (!quizStartTime || !quizEndTime) return null;
-    
+
     // Calculate time difference in seconds
     const timeDiff = Math.floor((quizEndTime - quizStartTime) / 1000);
     const minutes = Math.floor(timeDiff / 60);
     const seconds = timeDiff % 60;
-    
+
     return {
       minutes,
       seconds,
-      totalSeconds: timeDiff
+      totalSeconds: timeDiff,
     };
   };
 
   return (
     <div className="quiz-app">
-      <h1 className="quiz-title">Knowledge Quiz</h1>
-      
+      <h1 className="quiz-title">QuizApp</h1>
+
       <div className="quiz-container">
         {/* Show either the question or the results based on quiz completion */}
         {!quizCompleted ? (
-          <QuizQuestion 
+          <QuizQuestion
             question={quizQuestions[currentQuestionIndex]}
             currentQuestionIndex={currentQuestionIndex}
             totalQuestions={quizQuestions.length}
@@ -130,7 +133,7 @@ const QuizApp = () => {
             onNextQuestion={handleNextQuestion}
           />
         ) : (
-          <QuizResults 
+          <QuizResults
             score={score}
             totalQuestions={quizQuestions.length}
             timeTaken={getTimeTaken()}
@@ -139,7 +142,7 @@ const QuizApp = () => {
           />
         )}
       </div>
-      
+
       <p className="footer-text">© 2025 Knowledge Quiz App</p>
     </div>
   );

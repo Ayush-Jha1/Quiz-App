@@ -1,32 +1,47 @@
 export const quizQuestions = [
   {
     id: 1,
-    text: "What is the capital of France?",
-    options: ["Paris", "London", "Berlin", "Madrid"],
-    correctAnswer: 0
+    text: "Which of these is NOT a relational or logical operator?",
+    options: ["=", "||", "==", "!="],
+    correctAnswer: 0,
   },
   {
-    id: 2, 
-    text: "Which planet is known as the Red Planet?",
-    options: ["Venus", "Jupiter", "Mars", "Saturn"],
-    correctAnswer: 2
+    id: 2,
+    text: "Which is a condition in which the memory is dynamically reserved but isn’t accessible to any program?",
+    options: [
+      "Pointer Leak",
+      "Frozen Memory",
+      "Dangling Pointer",
+      "Memory Leak",
+    ],
+    correctAnswer: 3,
   },
   {
     id: 3,
-    text: "What is the largest mammal in the world?",
-    options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
-    correctAnswer: 1
+    text: "What does the if statement in JavaScript do?",
+    options: [
+      "Declares a variable",
+      "Executes a block of code based on a condition",
+      "Prints a message to the console",
+      "Loops through a block of code",
+    ],
+    correctAnswer: 1,
   },
   {
     id: 4,
-    text: "Who painted the Mona Lisa?",
-    options: ["Vincent Van Gogh", "Pablo Picasso", "Michelangelo", "Leonardo da Vinci"],
-    correctAnswer: 3
+    text: " What does JSX stand for?",
+    options: [
+      "JavaScript XML",
+      "Java Syntax Extension",
+      "JavaScript Syntax",
+      "Java Structured XML",
+    ],
+    correctAnswer: 0,
   },
   {
     id: 5,
-    text: "What is the chemical symbol for gold?",
-    options: ["Gd", "Au", "Ag", "Fe"],
-    correctAnswer: 1
-  }
+    text: "Which hook is used to add state to a functional component?",
+    options: ["useEffect", "useState", "useContext", "useReducer"],
+    correctAnswer: 1,
+  },
 ];
